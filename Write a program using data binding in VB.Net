@@ -1,0 +1,19 @@
+Imports System.Data.OleDb 
+Public Class Form1 
+Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load 
+Dim con As OleDbConnection 
+Dim ds As New DataSet 
+Dim cmd As OleDbCommand 
+Dim da As OleDbDataAdapter 
+con = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data 
+Source=C:\Users\Suresh\Documents\Visual Studio 2012\Projects\Data 
+binding\Student.mdb") 
+con.Open() 
+cmd = New OleDbCommand("Select * From student", con) 
+da = New OleDbDataAdapter(cmd) 
+da.Fill(ds, "student") 
+TextBox1.DataBindings.Add("Text", ds, "student.Roll_No") 
+TextBox2.DataBindings.Add("Text", ds, "student.Name") 
+TextBox3.DataBindings.Add("Text", ds, "student.Marks") 
+End Sub 
+End Class 
